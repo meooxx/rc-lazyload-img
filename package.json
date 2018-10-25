@@ -1,8 +1,15 @@
 {
   "name": "rc-lazyload-img",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "react intersetion-observer lazyload lazyload-img",
   "main": "index.js",
   "author": "superq",
-  "license": "mit"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.1.3"
+  },
+  "dependencies": {
+    "@types/react": "^16.4.18",
+    "react": "^16.6.0"
+  }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import * as React from "react";
 
 const observerMap = new Map();
 
@@ -32,7 +32,22 @@ function forwardRef(props, ref) {
 
 const Wrapper = React.forwardRef(forwardRef);
 
-export default class LazyLoadImg extends Component {
+interface IntersectionObserverOption {
+  root?: Element
+  rootMargin?: string
+  threshold?: number[]
+};
+
+export interface Props {
+  observerId: string
+  options: IntersectionObserverOption
+  src: string
+  'data-src': string  
+  [index: string]: any
+}
+export default class LazyLoadImg extends React.Component<Props> {
+  
+  
   componentDidMount() {
     //TODO: detect the intersection-observer api
     require("intersection-observer");
@@ -62,7 +77,7 @@ export default class LazyLoadImg extends Component {
     if (intance) intance.disconnect();
     observerMap.delete(id);
   }
-  getId = id => {
+  getId = (id:string)  => {
     return id ? `OBSERVERID_${id}` : `OBSERVERID`;
   };
 
