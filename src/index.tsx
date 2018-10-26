@@ -2,7 +2,12 @@ import * as React from "react";
 
 const observerMap = new Map();
 
-function forwardRef(props, ref) {
+interface FwdRProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  dataBGImg?: string
+}
+
+
+function forwardRef(props: FwdRProps, ref:React.Ref<React.RefObject<any>>) {
   const { src, alt = "", dataBGImg = "", ...rest } = props;
 
   const img = (
@@ -30,7 +35,7 @@ function forwardRef(props, ref) {
   return img;
 }
 
-const Wrapper = React.forwardRef(forwardRef);
+const Wrapper = React.forwardRef(forwardRef)
 
 interface IntersectionObserverOption {
   root?: Element
