@@ -1,16 +1,17 @@
 import * as React from "react";
 const observerMap = new Map();
 
+interface RefFunc {
+  (instance: HTMLImageElement): any;
+}
 interface CustomProps {
-  dataBGImg?: string
-  ref: (instance: React.ReactElement<any>) => any
+  dataBGImg?: string;
+  ref: React.ComponentClass;
 }
 
-type FwdRProps = CustomProps &  React.ImgHTMLAttributes<HTMLImageElement> 
-  
+type FwdRProps = CustomProps & React.ImgHTMLAttributes<HTMLImageElement>;
 
-
-function forwardRef(props: FwdRProps, ref:(instance: HTMLImageElement | null) => any) {
+const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
   const { src, alt = "", dataBGImg = "", ...rest } = props;
 
   const img = (
@@ -23,7 +24,7 @@ function forwardRef(props: FwdRProps, ref:(instance: HTMLImageElement | null) =>
         "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       }
     />
-  ) as React.ReactHTMLElement<HTMLElement>
+  ) as React.ReactHTMLElement<HTMLElement>;
 
   if (dataBGImg) {
     const pps = {
@@ -32,30 +33,30 @@ function forwardRef(props: FwdRProps, ref:(instance: HTMLImageElement | null) =>
       "data-bgimg": dataBGImg
     };
 
-    const ele = <div {...rest} {...pps} />;
+    const ele = <div {...rest} {...pps} /> as React.ReactHTMLElement<HTMLElement>;
     return ele;
   }
   return img;
-}
-
-const Wrapper = React.forwardRef(forwardRef)
-
-interface IntersectionObserverOption {
-  root?: Element
-  rootMargin?: string
-  threshold?: number[]
 };
 
+const Wrapper = React.forwardRef<HTMLImageElement, FwdRProps>(forwardRef);
+
+interface IntersectionObserverOption {
+  root?: Element;
+  rootMargin?: string;
+  threshold?: number[];
+}
+
 export interface Props {
-  observerId: string
-  options: IntersectionObserverOption
-  src: string
-  'data-src': string  
-  [index: string]: any
+  observerId: string;
+  options: IntersectionObserverOption;
+  src: string;
+  "data-src": string;
+  [index: string]: any;
 }
 export default class LazyLoadImg extends React.Component<Props> {
-  
-  
+  comRef: HTMLImageElement
+
   componentDidMount() {
     //TODO: detect the intersection-observer api
     require("intersection-observer");
@@ -74,6 +75,11 @@ export default class LazyLoadImg extends React.Component<Props> {
       observerMap.set(id, observerIntance);
     }
 
+    if (!observerIntance) {
+      observerIntance = new IntersectionObserver(this.onVisible, options);
+      observerMap.set(id, observerIntance);
+    }
+
     observerIntance.observe(this.comRef);
   }
 
@@ -85,7 +91,7 @@ export default class LazyLoadImg extends React.Component<Props> {
     if (intance) intance.disconnect();
     observerMap.delete(id);
   }
-  getId = (id:string)  => {
+  getId = (id: string) => {
     return id ? `OBSERVERID_${id}` : `OBSERVERID`;
   };
 
@@ -102,7 +108,7 @@ export default class LazyLoadImg extends React.Component<Props> {
     observe.unobserve(entry.target);
   };
 
-  saveNode = node => {
+  saveNode:RefFunc= (node:HTMLImageElement) => {
     this.comRef = node;
   };
 
