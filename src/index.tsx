@@ -1,13 +1,16 @@
 import * as React from "react";
-
 const observerMap = new Map();
 
-interface FwdRProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface CustomProps {
   dataBGImg?: string
+  ref: (instance: React.ReactElement<any>) => any
 }
 
+type FwdRProps = CustomProps &  React.ImgHTMLAttributes<HTMLImageElement> 
+  
 
-function forwardRef(props: FwdRProps, ref:React.Ref<React.RefObject<any>>) {
+
+function forwardRef(props: FwdRProps, ref:(instance: HTMLImageElement | null) => any) {
   const { src, alt = "", dataBGImg = "", ...rest } = props;
 
   const img = (
@@ -20,7 +23,7 @@ function forwardRef(props: FwdRProps, ref:React.Ref<React.RefObject<any>>) {
         "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       }
     />
-  );
+  ) as React.ReactHTMLElement<HTMLElement>
 
   if (dataBGImg) {
     const pps = {
