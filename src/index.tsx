@@ -6,7 +6,7 @@ interface RefFunc {
 }
 interface CustomProps {
   dataBGImg?: string;
-  ref: React.ComponentClass;
+  //ref: React.ComponentClass;
 }
 
 type FwdRProps = CustomProps & React.ImgHTMLAttributes<HTMLImageElement>;
@@ -24,7 +24,7 @@ const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
         "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       }
     />
-  ) as React.ReactHTMLElement<HTMLElement>;
+  ) as React.ReactHTMLElement<HTMLImageElement>
 
   if (dataBGImg) {
     const pps = {
@@ -33,7 +33,9 @@ const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
       "data-bgimg": dataBGImg
     };
 
-    const ele = <div {...rest} {...pps} /> as React.ReactHTMLElement<HTMLElement>;
+    const ele = <div {...rest} {...pps} /> as React.ReactHTMLElement<
+      HTMLElement
+    >;
     return ele;
   }
   return img;
@@ -54,8 +56,10 @@ export interface Props {
   "data-src": string;
   [index: string]: any;
 }
+
 export default class LazyLoadImg extends React.Component<Props> {
-  comRef: HTMLImageElement
+
+  comRef: HTMLImageElement;
 
   componentDidMount() {
     //TODO: detect the intersection-observer api
@@ -67,8 +71,8 @@ export default class LazyLoadImg extends React.Component<Props> {
       }
     } = this.props;
 
-    const id = this.getId(observerId);
-    let observerIntance = observerMap.get(id);
+    const id = this.getId(observerId) as string;
+    let observerIntance: IntersectionObserver = observerMap.get(id);
 
     if (!observerIntance) {
       observerIntance = new IntersectionObserver(this.onVisible, options);
@@ -95,24 +99,45 @@ export default class LazyLoadImg extends React.Component<Props> {
     return id ? `OBSERVERID_${id}` : `OBSERVERID`;
   };
 
-  onVisible = (entries, observe) => {
+  onVisible = (
+    entries: IntersectionObserverEntry[],
+    observe: IntersectionObserver
+  ) => {
     entries.forEach(this.setSrc(observe));
   };
 
-  setSrc = observe => entry => {
+  setSrc = (observe: IntersectionObserver) => (
+    entry: IntersectionObserverEntry
+  ) => {
     if (!entry.isIntersecting) return;
-    const entryTarget = entry.target;
-    if (entryTarget.dataset.bgimg && entryTarget.tageName !== "IMG")
-      entryTarget.style.backgroundImage = `url(${entryTarget.dataset.bgimg})`;
-    else entryTarget.src = entryTarget.dataset.src;
+
+    interface SrcAttr {
+      src?: string;
+      dataset?: {
+        [index: string]: any;
+      } ;
+      style?: {
+        [index: string]: string;
+      };
+    }
+
+    const entryTarget: Element & SrcAttr = entry.target;
+    const dataset = entryTarget.dataset || {}
+    entryTarget.style = entryTarget.style ? entryTarget.style :{}
+    
+    if (dataset.bgimg && entryTarget.tagName !== "IMG")
+      entryTarget.style.backgroundImage = `url(${dataset.dataset.bgimg})`;
+    else entryTarget.src = dataset.src;
     observe.unobserve(entry.target);
   };
 
-  saveNode:RefFunc= (node:HTMLImageElement) => {
+  saveNode :RefFunc= (node: HTMLImageElement) => {
     this.comRef = node;
   };
 
   render() {
-    return <Wrapper {...this.props} ref={this.saveNode} />;
+    return <Wrapper 
+      {...this.props} 
+      ref={this.saveNode} />;
   }
 }
