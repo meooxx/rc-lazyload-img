@@ -5,7 +5,7 @@ const resolve = require("rollup-plugin-node-resolve")
 const babel = require("rollup-plugin-babel")
 
 const inputOptions = {
-  input: "../src",
+  input: require.resolve("../src/index.tsx"),
   plugins: [
     resolve(), 
     babel({
@@ -20,7 +20,10 @@ const outputOptions = {
   format: "cjs"
 }
 
-module.exports =  async function build() {
+async function build() {
   const bundle = await rollup.rollup(inputOptions)
+  console.log(bundle)
   await bundle.write(outputOptions)
 }
+
+build()
