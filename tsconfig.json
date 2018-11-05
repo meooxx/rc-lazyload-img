@@ -13,9 +13,12 @@
       "es7"
     ]
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "lib",
-    "es"
+    "scripts"
   ]
 }
