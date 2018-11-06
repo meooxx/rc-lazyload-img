@@ -6,9 +6,13 @@ const babel = require("rollup-plugin-babel")
 const convert2cjs = require('rollup-plugin-commonjs')
 
 const inputOptions = {
-  input: require.resolve("../src/hello.jsx"),
+  input: require.resolve("../src/hello.js"),
   plugins: [
-    convert2cjs({
+    resolve(),
+  /*   babel({
+      exclude: 'node_modules/**' // only transpile our source code
+    }), */
+     convert2cjs({
       exclude:['node_modules/**'],
       namedExports: {
         'node_modules/react/index': [
@@ -18,21 +22,16 @@ const inputOptions = {
           'PropTypes',
           'Children',
           'Component',
+          "default"
        ],
         'node_modules/react-dom/index.js': ['render']
       }
     }),
-    resolve({
-      //jsnext: true,
-      //main: true,
-      //browser: true
-    }),
-    babel({
-      exclude: 'node_modules/**' // only transpile our source code
-    }),
+  
+   /*
     ts({
       typescript: require('typescript'),
-    }),
+    }), */
   ]
 }
 const outputOptions = {

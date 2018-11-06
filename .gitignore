@@ -3,3 +3,5 @@ node_modules
 .log.*
 *.log
 *_cache
+example/node_modules
+example
