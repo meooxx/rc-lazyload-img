@@ -2,7 +2,7 @@
   "name": "rc-lazyload-img",
   "version": "0.1.0",
   "description": "react intersetion-observer lazyload lazyload-img",
-  "main": "index.js",
+  "main": "lib/rc-lazyload-img.js",
   "author": "superq",
   "license": "MIT",
   "devDependencies": {
