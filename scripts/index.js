@@ -5,18 +5,15 @@ const resolve = require("rollup-plugin-node-resolve")
 const babel = require("rollup-plugin-babel")
 const convert2cjs = require('rollup-plugin-commonjs')
 
-const inputOptions = {
-  input: require.resolve("../src/hello.js"),
-  plugins: [
-    resolve(),
-  /*   babel({
+const plugins = [
+  resolve(),
+    babel({
       exclude: 'node_modules/**' // only transpile our source code
-    }), */
+    }),
      convert2cjs({
       exclude:['node_modules/**'],
       namedExports: {
-        'node_modules/react/index': [
-          'React',
+        'node_modules/react/react': [
           'cloneElement',
           'createElement',
           'PropTypes',
@@ -27,12 +24,15 @@ const inputOptions = {
         'node_modules/react-dom/index.js': ['render']
       }
     }),
-  
-   /*
     ts({
       typescript: require('typescript'),
-    }), */
-  ]
+    }),
+]
+
+
+const inputOptions = {
+  input: require.resolve("../src/index.tsx"),
+  plugins: plugins
 }
 const outputOptions = {
   name: "rc-lazyload-img",
