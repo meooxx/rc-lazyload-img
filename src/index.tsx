@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 const observerMap = new Map();
 
@@ -64,6 +64,11 @@ export default class LazyLoadImg extends React.Component<Props> {
 
   componentDidMount() {
     //TODO: detect the intersection-observer api
+    //if (!'IntersectionObserver' in window &&
+    //!'IntersectionObserverEntry' in window &&
+    //!'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    // load polyfill now
+    // }
     require("intersection-observer");
     const {
       observerId,
