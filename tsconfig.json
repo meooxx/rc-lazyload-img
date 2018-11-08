@@ -7,13 +7,8 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
-    "target": "es5",
+    "target": "es2017",
     "module": "es2015",
-    "lib": [
-      "es7" ,
-      "dom"
-    ]
-    
   },
   "include": [
     "src/**/*",

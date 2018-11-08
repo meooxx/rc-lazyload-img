@@ -3,37 +3,43 @@ const ts = require("rollup-plugin-typescript2");
 const resolve = require("rollup-plugin-node-resolve");
 const babel = require("rollup-plugin-babel");
 const convert2cjs = require("rollup-plugin-commonjs");
+const replace = require('rollup-plugin-replace')
+
+const DEV = 'development'
+const PRO = "production"
+
 
 const plugins = [
-  babel({
-    exclude: "node_modules/**" // only transpile our source code
-  }),
+  replace({'process.env.NODE_ENV': PRO}),
   resolve(),
+  babel({
+    exclude: "node_modules/**"
+  }),
   convert2cjs({
-    include: ["../node_modules/**"],
+    include: "node_modules/**",
     namedExports: {
-      "../node_modules/react/index": ["createElement", "Component", "forwardRef"]
+      "node_modules/react/index.js": ["createElement", "Component", "forwardRef"]
     }
   }),
-
-  ts({
-    typescript: require("typescript")
-  })
+  ts()
 ];
 
 const inputOptions = {
-  input: require.resolve("../src/index.tsx"),
+  input: require.resolve("index.tsx"),
   plugins: plugins
 };
-const outputOptions = {
+const getOutputOptions = (f = "cjs") =>  ({
   name: "rc-lazyload-img",
   file: "./lib/rc-lazyload-img.js",
-  format: "cjs"
-};
+  format: f
+});
 
 async function build() {
+  await asyncRimraf('lib')
   const bundle = await rollup.rollup(inputOptions);
+  const outputOptions = getOutputOptions('cjs')
   await bundle.write(outputOptions);
+
 }
 
 build();

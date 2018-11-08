@@ -674,6 +674,25 @@ convert-source-map@^1.1.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+cross-env@^5.2.0:
+  version "5.2.0"
+  resolved "http://registry.npm.taobao.org/cross-env/download/cross-env-5.2.0.tgz#6ecd4c015d5773e614039ee529076669b9d126f2"
+  integrity sha1-bs1MAV1Xc+YUA57lKQdmabnRJvI=
+  dependencies:
+    cross-spawn "^6.0.5"
+    is-windows "^1.0.0"
+
+cross-spawn@^6.0.5:
+  version "6.0.5"
+  resolved "http://registry.npm.taobao.org/cross-spawn/download/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
+  integrity sha1-Sl7Hxk364iw6FBJNus3uhG2Ay8Q=
+  dependencies:
+    nice-try "^1.0.4"
+    path-key "^2.0.1"
+    semver "^5.5.0"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
 csstype@^2.2.0:
   version "2.5.7"
   resolved "http://registry.npm.taobao.org/csstype/download/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
@@ -861,9 +880,19 @@ is-primitive@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-primitive/-/is-primitive-2.0.0.tgz#207bab91638499c07b2adf240a41a87210034575"
 
+is-windows@^1.0.0:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/is-windows/download/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
+  integrity sha1-0YUOuXkezRjmGCzhKjDzlmNLsZ0=
+
 isarray@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
+
+isexe@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/isexe/download/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
+  integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
 isobject@^2.0.0:
   version "2.1.0"
@@ -945,7 +974,7 @@ micromatch@^2.3.11:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
-minimatch@^3.0.4:
+minimatch@^3.0.2, minimatch@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   integrity sha1-UWbihkV/AzBgZL5Ul+jbsMPTIIM=
@@ -955,6 +984,11 @@ minimatch@^3.0.4:
 ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
+
+nice-try@^1.0.4:
+  version "1.0.5"
+  resolved "http://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
+  integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
 node-releases@^1.0.1:
   version "1.0.2"
@@ -999,6 +1033,11 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/path-is-absolute/download/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
+
+path-key@^2.0.1:
+  version "2.0.1"
+  resolved "http://registry.npm.taobao.org/path-key/download/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
+  integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.5:
   version "1.0.6"
@@ -1128,6 +1167,15 @@ rollup-plugin-node-resolve@^3.4.0:
     is-module "^1.0.0"
     resolve "^1.1.6"
 
+rollup-plugin-replace@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/rollup-plugin-replace/download/rollup-plugin-replace-2.1.0.tgz#f9c07a4a89a2f8be912ee54b3f0f68d91e9ed0ae"
+  integrity sha1-+cB6Somi+L6RLuVLPw9o2R6e0K4=
+  dependencies:
+    magic-string "^0.25.1"
+    minimatch "^3.0.2"
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-typescript2@^0.17.2:
   version "0.17.2"
   resolved "http://registry.npm.taobao.org/rollup-plugin-typescript2/download/rollup-plugin-typescript2-0.17.2.tgz#7d18a94b74993307ec69b7c2f571c12b51561a14"
@@ -1144,7 +1192,7 @@ rollup-plugin-typescript@^1.0.0:
     resolve "^1.8.1"
     rollup-pluginutils "^2.3.1"
 
-rollup-pluginutils@2.3.3, rollup-pluginutils@^2.3.0, rollup-pluginutils@^2.3.1, rollup-pluginutils@^2.3.3:
+rollup-pluginutils@2.3.3, rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.0, rollup-pluginutils@^2.3.1, rollup-pluginutils@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.3.3.tgz#3aad9b1eb3e7fe8262820818840bf091e5ae6794"
   dependencies:
@@ -1169,9 +1217,21 @@ scheduler@^0.10.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-semver@^5.3.0, semver@^5.4.1:
+semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
+
+shebang-command@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/shebang-command/download/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
+  integrity sha1-RKrGW2lbAzmJaMOfNj/uXer98eo=
+  dependencies:
+    shebang-regex "^1.0.0"
+
+shebang-regex@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/shebang-regex/download/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+  integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
 source-map@^0.5.0:
   version "0.5.7"
@@ -1229,6 +1289,13 @@ unicode-property-aliases-ecmascript@^1.0.4:
 universalify@^0.1.0:
   version "0.1.2"
   resolved "http://registry.npm.taobao.org/universalify/download/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
+
+which@^1.2.9:
+  version "1.3.1"
+  resolved "http://registry.npm.taobao.org/which/download/which-1.3.1.tgz#a45043d54f5805316da8d62f9f50918d3da70b0a"
+  integrity sha1-pFBD1U9YBTFtqNYvn1CRjT2nCwo=
+  dependencies:
+    isexe "^2.0.0"
 
 wrappy@1:
   version "1.0.2"
