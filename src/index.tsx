@@ -63,13 +63,17 @@ export default class LazyLoadImg extends React.Component<Props> {
   comRef: HTMLImageElement;
 
   componentDidMount() {
-    //TODO: detect the intersection-observer api
-    //if (!'IntersectionObserver' in window &&
-    //!'IntersectionObserverEntry' in window &&
-    //!'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
-    // load polyfill now
-    // }
-    require("intersection-observer");
+    const INTERSECTIONRATIO: string = 'intersectionRatio'
+    const INTERSECTION_OBSERVER = "IntersectionObserver"
+    const INTERSECTION_OBSERVER_ENTRY  = "IntersectionObserverEntry"
+
+    if(!(INTERSECTION_OBSERVER in window) &&
+      (INTERSECTION_OBSERVER_ENTRY in window) && 
+      !(INTERSECTIONRATIO in (window as any).IntersectionObserverEntry.prototype)) {
+        // load polyfill now
+        require("intersection-observer");
+    }
+
     const {
       observerId,
       options = {
