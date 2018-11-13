@@ -1,7 +1,7 @@
-const rimraf = rquire('rimraf')
+const rimraf = require('rimraf')
 
-export const asyncRimraf = (filepath) => {
-  return new Promose((resolve, reject) => {
+const asyncRimraf = (filepath) => {
+  return new Promise((resolve, reject) => {
     rimraf(filepath, (err) => {
       if(err)  {
         reject(err)
@@ -11,3 +11,5 @@ export const asyncRimraf = (filepath) => {
     })
   })
 }
+
+exports.asyncRimraf = asyncRimraf
