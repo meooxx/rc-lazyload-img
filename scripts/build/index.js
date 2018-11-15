@@ -7,13 +7,13 @@ const replace = require('rollup-plugin-replace')
 const path = require('path')
 const { asyncRimraf } = require('../utils')
 
-const DEV = 'development'
+// const DEV = 'development'
 const PRO = "production"
 
 const srcDir = path.resolve("./src")
 
 const plugins = [
-  replace({'process.env.NODE_ENV': PRO}),
+  replace({'process.env.NODE_ENV': JSON.stringify("production")}),
   resolve(),
   babel({
     exclude: "node_modules/**"

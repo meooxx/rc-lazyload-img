@@ -136,7 +136,7 @@ export default class LazyLoadImg extends React.Component<Props> {
     entryTarget.style = entryTarget.style ? entryTarget.style :{}
     
     if (dataset.bgimg && entryTarget.tagName !== "IMG")
-      entryTarget.style.backgroundImage = `url(${dataset.dataset.bgimg})`;
+      entryTarget.style.backgroundImage = `url(${dataset.bgimg})`;
     else entryTarget.src = dataset.src;
     observe.unobserve(entry.target);
   };

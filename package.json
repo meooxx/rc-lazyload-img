@@ -1,6 +1,6 @@
 {
   "name": "rc-lazyload-img",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "react intersetion-observer lazyload lazyload-img",
   "main": "lib/rc-lazyload-img.js",
   "author": "superq",
@@ -23,6 +23,9 @@
     "tsc": "^1.20150623.0",
     "tslib": "^1.9.3",
     "typescript": "^3.1.5"
+  },
+  "scripts": {
+      "build": "node ./scripts/build "
   },
   "dependencies": {
     "intersection-observer": "^0.5.1",
