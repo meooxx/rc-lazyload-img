@@ -27,6 +27,9 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+// copyToDoc for github pages
+const { copyToDocFolder } = require('./copyToDoc')
+
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -106,6 +109,11 @@ checkBrowsers(paths.appPath, isInteractive)
         buildFolder,
         useYarn
       );
+      
+      console.log("copy static/media images to /doc...")
+      console.log('\n for github pages')
+      copyToDocFolder()
+      
     },
     err => {
       console.log(chalk.red('Failed to compile.\n'));
@@ -187,3 +195,5 @@ function copyPublicFolder() {
     filter: file => file !== paths.appHtml,
   });
 }
+
+

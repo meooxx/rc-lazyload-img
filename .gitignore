@@ -5,3 +5,4 @@ node_modules
 *_cache
 example/node_modules
 lib/
+doc/
