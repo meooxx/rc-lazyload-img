@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 const observerMap = new Map();
 
@@ -25,7 +25,7 @@ const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
         "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
       }
     />
-  ) as React.ReactHTMLElement<HTMLImageElement>
+  ) as React.ReactHTMLElement<HTMLImageElement>;
 
   if (dataBGImg) {
     const pps = {
@@ -59,19 +59,22 @@ export interface Props {
 }
 
 export default class LazyLoadImg extends React.Component<Props> {
-
   comRef: HTMLImageElement;
 
   componentDidMount() {
-    const INTERSECTIONRATIO: string = 'intersectionRatio'
-    const INTERSECTION_OBSERVER = "IntersectionObserver"
-    const INTERSECTION_OBSERVER_ENTRY  = "IntersectionObserverEntry"
+    const INTERSECTIONRATIO: string = "intersectionRatio";
+    const INTERSECTION_OBSERVER = "IntersectionObserver";
+    const INTERSECTION_OBSERVER_ENTRY = "IntersectionObserverEntry";
 
-    if(!(INTERSECTION_OBSERVER in window) &&
-      (INTERSECTION_OBSERVER_ENTRY in window) && 
-      !(INTERSECTIONRATIO in (window as any).IntersectionObserverEntry.prototype)) {
-        // load polyfill now
-        require("intersection-observer");
+    if (
+      !(INTERSECTION_OBSERVER in window) &&
+      INTERSECTION_OBSERVER_ENTRY in window &&
+      !(
+        INTERSECTIONRATIO in (window as any).IntersectionObserverEntry.prototype
+      )
+    ) {
+      // load polyfill now
+      require("intersection-observer");
     }
 
     const {
@@ -83,11 +86,6 @@ export default class LazyLoadImg extends React.Component<Props> {
 
     const id = this.getId(observerId) as string;
     let observerIntance: IntersectionObserver = observerMap.get(id);
-
-    if (!observerIntance) {
-      observerIntance = new IntersectionObserver(this.onVisible, options);
-      observerMap.set(id, observerIntance);
-    }
 
     if (!observerIntance) {
       observerIntance = new IntersectionObserver(this.onVisible, options);
@@ -125,29 +123,27 @@ export default class LazyLoadImg extends React.Component<Props> {
       src?: string;
       dataset?: {
         [index: string]: any;
-      } ;
+      };
       style?: {
         [index: string]: string;
       };
     }
 
     const entryTarget: Element & SrcAttr = entry.target;
-    const dataset = entryTarget.dataset || {}
-    entryTarget.style = entryTarget.style ? entryTarget.style :{}
-    
+    const dataset = entryTarget.dataset || {};
+    entryTarget.style = entryTarget.style ? entryTarget.style : {};
+
     if (dataset.bgimg && entryTarget.tagName !== "IMG")
       entryTarget.style.backgroundImage = `url(${dataset.bgimg})`;
     else entryTarget.src = dataset.src;
     observe.unobserve(entry.target);
   };
 
-  saveNode :RefFunc= (node: HTMLImageElement) => {
+  saveNode: RefFunc = (node: HTMLImageElement) => {
     this.comRef = node;
   };
 
   render() {
-    return <Wrapper 
-      {...this.props} 
-      ref={this.saveNode} />;
+    return <Wrapper {...this.props} ref={this.saveNode} />;
   }
 }
