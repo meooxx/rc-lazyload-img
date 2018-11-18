@@ -33,19 +33,19 @@ jobs:
           paths: 
             - dist
             - scripts
-    publish:
-      <<: *defaults
-      steps: 
-        - attach_workspace:
-            at: dist
+  publish:
+    <<: *defaults
+    steps: 
+      - attach_workspace:
+          at: dist
 
-        - run:
-          name: "Authenticate with registry" 
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
-        - run: 
-          name: 'has ./scripts'
-          command: ls .
-          #-run: node ./scripts/release/publish-to-npm.js
+      - run:
+        name: "Authenticate with registry" 
+        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+      - run: 
+        name: 'has ./scripts'
+        command: ls .
+        #-run: node ./scripts/release/publish-to-npm.js
 workflows:
   version: 2
   build-publish_to_npm:
