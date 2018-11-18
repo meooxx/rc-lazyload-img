@@ -7,7 +7,6 @@ defaults: &defaults
   working_directory: ~/project
   docker:
     - image: circleci/node:8.11.3
-
 jobs:
   build:
     <<: *defaults
@@ -26,11 +25,10 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
       # run tests!
       - run: yarn build
       - run: ls .
-      persist_to_workspace:
+      - persist_to_workspace:
         root: ~/project
         paths: 
           - dist
@@ -38,13 +36,13 @@ jobs:
     publish:
       <<: *defaults
       steps: 
-        attach_workspace:
+        - attach_workspace:
           at: dist
 
-        -run:
+        - run:
           name: "Authenticate with registry" 
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
-        -run: 
+        - run: 
           name: 'has ./scripts'
           command: ls .
           #-run: node ./scripts/release/publish-to-npm.js
