@@ -29,15 +29,15 @@ jobs:
       - run: yarn build
       - run: ls .
       - persist_to_workspace:
-        root: ~/project
-        paths: 
-          - dist
-          - scripts
+          root: ~/project
+          paths: 
+            - dist
+            - scripts
     publish:
       <<: *defaults
       steps: 
         - attach_workspace:
-          at: dist
+            at: dist
 
         - run:
           name: "Authenticate with registry" 
