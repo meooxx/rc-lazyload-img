@@ -40,12 +40,12 @@ jobs:
           at: dist
 
       - run:
-        name: "Authenticate with registry" 
-        command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+          name: "Authenticate with registry" 
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
       - run: 
-        name: 'has ./scripts'
-        command: ls .
-        #-run: node ./scripts/release/publish-to-npm.js
+          name: 'check it has attach ./scripts '
+          command: ls .
+          #-run: node ./scripts/release/publish-to-npm.js
 workflows:
   version: 2
   build-publish_to_npm:
