@@ -52,11 +52,11 @@ workflows:
     jobs: 
       - build 
       - publish:
-           branches:
-              only:
-                - master
-        #  tags:
-        #    only: /^v.*/
-        requires:
-          - build
+          filters:
+            branches:
+              only: master
+          #  tags:
+          #    only: /^v.*/
+          requires:
+            - build
 
