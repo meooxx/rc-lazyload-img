@@ -12,9 +12,9 @@ const dirPath = fs.realpathSync(process.cwd())
 const imgsDir = path.relative(dirPath, 'build')
 const rootDoc = path.resolve('..', "..", 'doc/')
 
-export const copyToDocFolder = ()=>{
+const copyToDocFolder = () => {
   fse.copySync(imgsDir, rootDoc)
 }
 
 
-
+exports.copyToDocFolder = copyToDocFolder
