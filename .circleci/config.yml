@@ -37,14 +37,14 @@ jobs:
     <<: *defaults
     steps: 
       - attach_workspace:
-          at: dist
+          at: ~/project
 
       - run:
           name: "Authenticate with registry" 
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
       - run: 
           name: 'check it has attach ./scripts '
-          command: ls .
+          command: ls -a .
           #-run: node ./scripts/release/publish-to-npm.js
 workflows:
   version: 2
