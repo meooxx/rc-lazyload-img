@@ -15,5 +15,4 @@ childProcess.exec(
   `npm publish --registry=${defaultRegistry}`,
   { cwd: "./dist" }, 
   logExec
-  
 )

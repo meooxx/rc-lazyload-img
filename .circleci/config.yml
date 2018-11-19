@@ -16,16 +16,22 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - restore_cache:
+          keys: 
+            - git-cache-
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # run tests!
+      - save_cache:
+          paths:
+            - .git
+          key: git-cache-{{ .branch }}
+          # run tests!
       - run: yarn build
       - run: ls .
       - persist_to_workspace:
@@ -33,6 +39,21 @@ jobs:
           paths: 
             - dist
             - scripts
+            - example
+  build_demo:
+    <<: *defaults
+    steps: 
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: "build example files" 
+          command: cd ./example/demo1 && yarn
+      - run :
+          name: "copy build to root"  
+          command: node ./scripts/release/pushToGhPage.js &&ls -a .
+      - run: -git status
+      
+  
   publish:
     <<: *defaults
     steps: 
@@ -46,17 +67,24 @@ jobs:
           name: 'check it has attach ./scripts '
           command: ls -a .
           #-run: node ./scripts/release/publish-to-npm.js
+  
 workflows:
   version: 2
   build-publish_to_npm:
     jobs: 
       - build 
-      - publish:
+      - build_demo:
           filters:
-            branches:
-              only: master
-          #  tags:
-          #    only: /^v.*/
+          branches:
+            only: master
           requires:
             - build
+      # - publish:
+      #   filters:
+      #      branches:
+      #        only: master
+          #  tags:
+          #    only: /^v.*/
+      #    requires:
+      #      - build
 
