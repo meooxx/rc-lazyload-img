@@ -85,12 +85,6 @@ workflows:
   build-publish_to_npm:
     jobs: 
       - build 
-      - build_demo:
-          filters:
-            branches:
-              only: master
-          requires:
-            - build
       - publish:
           filters:
             tags:
@@ -99,4 +93,11 @@ workflows:
               ignore: /.*/
           requires:
             - build
+      - build_demo:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+      
 
