@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           paths:
             - .git
-          key: git-cache-{{ .branch }}
+          key: git-cache-{{ .Branch }}
           # run tests!
       - run: yarn build
       - run: ls .
@@ -51,7 +51,7 @@ jobs:
       - run :
           name: "copy build to root"  
           command: node ./scripts/release/pushToGhPage.js &&ls -a .
-      - run: -git status
+      - run: git status
       
   
   publish:
