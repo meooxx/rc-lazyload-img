@@ -75,10 +75,10 @@ workflows:
       - build 
       - build_demo:
           filters:
-          branches:
-            only: master
-          requires:
-            - build
+            branches:
+              only: master
+            requires:
+              - build
       # - publish:
       #   filters:
       #      branches:
