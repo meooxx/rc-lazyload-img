@@ -85,7 +85,7 @@ workflows:
   build-publish_to_npm:
     jobs: 
       - build: 
-        filters:
+          filters:
             tags:
               only: /^v.*/
       - publish:
