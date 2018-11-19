@@ -86,13 +86,14 @@ workflows:
     jobs: 
       - build 
       - publish:
+          requires:
+            - build
           filters:
             tags:
               only: /^v.*/
             branches:
               ignore: /.*/
-          requires:
-            - build
+          
       # - build_demo:
       #     filters:
       #       branches:
