@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           paths:
             - .git
-          key: git-cache-{{ .Branch }}
+          key: git-cache-{{ .branch }}
           # run tests!
       - run: yarn build
       - run: ls .
@@ -43,11 +43,19 @@ jobs:
   build_demo:
     <<: *defaults
     steps: 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
       - attach_workspace:
           at: ~/project
       - run:
           name: "build example files" 
-          command: cd ./example/demo1 && yarn
+          command: |
+            cd ./example/demo1 
+            yarn
+            ls -alt
       - run :
           name: "copy build to root"  
           command: node ./scripts/release/pushToGhPage.js &&ls -a .
