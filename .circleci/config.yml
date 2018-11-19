@@ -79,7 +79,7 @@ jobs:
       - run: 
           name: 'check it has attach ./scripts '
           command: ls -a .
-          #-run: node ./scripts/release/publish-to-npm.js
+          -run: node ./scripts/release/publish-to-npm.js
   
 workflows:
   version: 2
