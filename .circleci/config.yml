@@ -47,6 +47,10 @@ jobs:
           keys:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+      - restore_cache:
+          keys:
+            # fallback to using the latest cache if no exact match is found
+            - git-cache      
       - attach_workspace:
           at: ~/project
       - run:
@@ -54,10 +58,11 @@ jobs:
           command: |
             cd ./example/demo1 
             yarn
+            yarn build
             ls -alt
       - run :
           name: "copy build to root"  
-          command: node ./scripts/release/pushToGhPage.js &&ls -a .
+          command: node ./scripts/release/pushToGhPage.js && ls -a .
       - run: git status 
       - run: cd ~/project 
       
