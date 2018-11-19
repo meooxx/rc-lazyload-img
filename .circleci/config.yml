@@ -92,12 +92,12 @@ workflows:
               only: master
           requires:
             - build
-      # - publish:
-      #   filters:
-      #      branches:
-      #        only: master
-          #  tags:
-          #    only: /^v.*/
-      #    requires:
-      #      - build
+      - publish:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+          requires:
+            - build
 
