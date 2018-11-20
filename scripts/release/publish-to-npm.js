@@ -18,7 +18,7 @@ const logExec = (err, stdout) => {
 async function execCommand() {
 try {
   await childProcess.exec(
-    `ls -alt . ~`,
+    `ls -alt .`,
     
     logExec
   )
@@ -27,17 +27,17 @@ try {
     { cwd: "./dist" }, 
     logExec
   )
+
+  await childProcess.exec(
+    `npm publish --registry=${defaultRegistry}`,
+    { cwd: "./dist" }, 
+    logExec
+  )
   }catch(err) {
     process.exit(1)
   }
+
   
 }
 
 execCommand()
-return 
-
-childProcess.exec(
-  `npm publish --registry=${defaultRegistry}`,
-  { cwd: "./dist" }, 
-  logExec
-)
