@@ -80,7 +80,7 @@ jobs:
             echo "-----------"
             ls -alt ~
             echo "-----------"
-            ls alt ~/project
+            ls -alt ~/project
             echo "-----------"
       - run: 
           name: 'check it has attach ./scripts '
