@@ -82,6 +82,9 @@ jobs:
             echo "-----------"
             ls -alt ~/project
             echo "-----------"
+            cat ~/project/.npmrc
+            echo "-----------"
+            cat ~/.npmrc
       - run: 
           name: 'check it has attach ./scripts '
           command: ls -a .
