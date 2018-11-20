@@ -65,7 +65,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
     // Merge with the public folder
-    // copyPublicFolder();
+     copyPublicFolder();
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -112,7 +112,7 @@ checkBrowsers(paths.appPath, isInteractive)
       
       console.log("copy static/media images to /doc...")
       console.log('\n for github pages')
-      copyToDocFolder()
+      //copyToDocFolder()
       
     },
     err => {
