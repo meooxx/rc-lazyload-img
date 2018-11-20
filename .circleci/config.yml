@@ -74,7 +74,14 @@ jobs:
           at: ~/project
       - run:
           name: "Authenticate with registry" 
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" | > ~/.npmrc
+          command: |
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" | > ~/.npmrc
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" | > ~/project/.npmrc
+            echo "-----------"
+            ls -alt ~
+            echo "-----------"
+            ls alt ~/project
+            echo "-----------"
       - run: 
           name: 'check it has attach ./scripts '
           command: ls -a .
