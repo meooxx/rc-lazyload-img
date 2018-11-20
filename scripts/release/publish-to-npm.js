@@ -7,7 +7,10 @@ const defaultRegistry = 'https://registry.npmjs.org/'
 // )
 
 const logExec = (err, stdout) => {
-  if(err) console.log(err)
+  if(err) {
+    console.log(err)
+    process.exit(1)
+  }
   console.log(stdout)
 }
 

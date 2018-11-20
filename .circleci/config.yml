@@ -74,11 +74,11 @@ jobs:
           at: ~/project
       - run:
           name: "Authenticate with registry" 
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
-      - run: cat ~/project/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" | > ~/.npmrc
       - run: 
           name: 'check it has attach ./scripts '
           command: ls -a .
+      - run: ls ~/project/dist
       - run: node ./scripts/release/publish-to-npm.js
 
 workflows:
