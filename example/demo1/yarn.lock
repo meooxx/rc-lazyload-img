@@ -3957,6 +3957,10 @@ internal-ip@^3.0.1:
     default-gateway "^2.6.0"
     ipaddr.js "^1.5.2"
 
+intersection-observer@^0.5.1:
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/intersection-observer/download/intersection-observer-0.5.1.tgz#e340fc56ce74290fe2b2394d1ce88c4353ac6dfa"
+
 invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -6646,6 +6650,13 @@ raw-body@2.3.3:
     http-errors "1.6.3"
     iconv-lite "0.4.23"
     unpipe "1.0.0"
+
+rc-lazyload-img@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/rc-lazyload-img/download/rc-lazyload-img-1.0.1.tgz#86156eac80c5cbdfe30127ebf23310fbd74900e9"
+  dependencies:
+    intersection-observer "^0.5.1"
+    react "^16.6.0"
 
 rc@^1.2.7:
   version "1.2.8"

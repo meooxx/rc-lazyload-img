@@ -5,6 +5,7 @@
   "main": "lib/rc-lazyload-img.js",
   "author": "superq",
   "license": "MIT",
+  "repository": "meooxx/rc-lazyload-img",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",

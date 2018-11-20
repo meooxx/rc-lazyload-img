@@ -64,7 +64,6 @@ jobs:
           name: "copy build to root"  
           command: node ./scripts/release/pushToGhPage.js && ls -a .
       - run: git status 
-      - run: cd ~/project 
       
   
   publish:
@@ -101,11 +100,11 @@ workflows:
             branches:
               ignore: /.*/
           
-      # - build_demo:
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - build
+      - build_demo:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
       
 
