@@ -4,5 +4,7 @@ node_modules
 *.log
 *_cache
 example/node_modules
+/build/
 lib/
 dist/
+doc/
