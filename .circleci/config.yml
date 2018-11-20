@@ -60,6 +60,7 @@ jobs:
             yarn
             yarn build
             ls -alt
+            cd ../../
       - run :
           name: "copy build to root"  
           command: node ./scripts/release/pushToGhPage.js && ls -a .
