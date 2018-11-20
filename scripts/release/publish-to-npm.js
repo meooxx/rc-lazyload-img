@@ -9,16 +9,31 @@ const defaultRegistry = 'https://registry.npmjs.org/'
 const logExec = (err, stdout) => {
   if(err) {
     console.log(err)
-    process.exit(1)
+    throw err
   }
   console.log(stdout)
 }
 
-childProcess.exec(
-  `npm whoami --registry=${defaultRegistry}`,
-  { cwd: "./dist" }, 
-  logExec
-)
+
+async function execCommand() {
+try {
+  await childProcess.exec(
+    `ls -alt . ~`,
+    
+    logExec
+  )
+  await childProcess.exec(
+    `npm whoami --registry=${defaultRegistry}`,
+    { cwd: "./dist" }, 
+    logExec
+  )
+  }catch(err) {
+    process.exit(1)
+  }
+  
+}
+
+execCommand()
 return 
 
 childProcess.exec(
