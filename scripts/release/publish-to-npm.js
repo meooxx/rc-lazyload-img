@@ -15,6 +15,13 @@ const logExec = (err, stdout) => {
 }
 
 childProcess.exec(
+  `npm whoami --registry=${defaultRegistry}`,
+  { cwd: "./dist" }, 
+  logExec
+)
+return 
+
+childProcess.exec(
   `npm publish --registry=${defaultRegistry}`,
   { cwd: "./dist" }, 
   logExec
