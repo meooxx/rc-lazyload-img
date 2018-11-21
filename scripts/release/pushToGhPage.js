@@ -27,9 +27,11 @@ const pushToPage = async () => {
     'bash', 
     {
       cwd: `${rootDir}/gh-pages`
-
     }
   )
+
+  sub.stdio.forEach(io=>io.setEncoding('utf-8'))
+
   try {
     await sub.stdin.write(`
       pwd \n
@@ -50,7 +52,6 @@ const pushToPage = async () => {
   
 
 
-  sub.stdio.forEach(io=>io.setEncoding('utf-8'))
   sub.stdout.on("data", (data) => {
     console.log(data)
     if(data.indexOf(`(yes/no)`)){
