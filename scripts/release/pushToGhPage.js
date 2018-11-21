@@ -47,15 +47,20 @@ const pushToPage = async () => {
    // await  sub.stdin.end()
 
   }catch(err) {
-    console.log(err)
+    console.log("err: ", err)
   }
   
 
 
   sub.stdout.on("data", (data) => {
     console.log("onData:", data)
-    if(data.indexOf(`(yes/no)?`) !== -1){
-        console.log(data.indexOf(`(yes/no)?`))
+   
+  })
+
+  sub.on('exit', (...rest)=> {
+    try{sub.stdin.write('yes\n')}
+    catch(err) {
+      console.log("exit err: ", err, rest)
     }
   })
 
