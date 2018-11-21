@@ -33,12 +33,14 @@ const pushToPage = async () => {
   try {
     await sub.stdin.write(`
       pwd \n
+      git config user.name "superq"
+      git config user.email "qq1143094348@gmail.com"
       git init \n
       git remote add origin ${gitAddr} \n
       git add . \n
       git commit -m "gh-pages" \n
       git status \n
-      git push origin HEAD:gh-pages \n
+      git push origin HEAD:gh-pages -f \n
     `)
     await  sub.stdin.end()
 
