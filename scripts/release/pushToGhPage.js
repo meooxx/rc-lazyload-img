@@ -55,7 +55,7 @@ const pushToPage = async () => {
   sub.stdout.on("data", (data) => {
     console.log(data)
     if(data.indexOf(`(yes/no)`)){
-      sub.stdin.end('\n')
+      //sub.stdin.end('\n')
     }
   })
 
