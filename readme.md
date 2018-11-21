@@ -1,8 +1,18 @@
-## react lazy load(preview!!)
-### it leverages intersetion-observer Api  [w3c](https://github.com/w3c/IntersectionObserver)
+react lazy load(preview!!)
 
-### ligthweigth and flexible script 
+install 
 
-### written in plain js
+```sh
+npm i rc-lazyload-img
+# or yarn add -D rc-lazyload-img
+
+```
+
+feature
+
+ * it leverages intersetion-observer Api  [w3c](https://github.com/w3c/IntersectionObserver)
+ * ligthweigth and flexible script 
+ * jsx 
+ * outbox 
 
 <b>not yet online, only for preview </b>
