@@ -42,7 +42,7 @@ const pushToPage = async () => {
       git status \n
       git push origin HEAD:gh-pages -f \n
     `)
-    await  sub.stdin.end()
+   // await  sub.stdin.end()
 
   }catch(err) {
     console.log(err)
@@ -53,6 +53,9 @@ const pushToPage = async () => {
   sub.stdio.forEach(io=>io.setEncoding('utf-8'))
   sub.stdout.on("data", (data) => {
     console.log(data)
+    if(data.indexOf(`(yes/no)`)){
+      sub.stdin.end('yes')
+    }
   })
 
   
@@ -62,12 +65,8 @@ const pushToPage = async () => {
 
   })
 
-   sub.on("exit", (...rest)=>console.log(rest))
-  
-
-
 }
 
 
-
 pushToPage()
+
