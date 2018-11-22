@@ -92,6 +92,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              only: master
       - publish:
           requires:
             - build

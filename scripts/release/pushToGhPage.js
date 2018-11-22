@@ -30,12 +30,18 @@ const pushToPage = async () => {
     }
   )
 
-  sub.stdio.forEach(io=>io.setEncoding('utf-8'))
+  sub.stderr.setEncoding('utf-8')
+  sub.stdout.setEncoding('utf-8')
 
   try {
-    await sub.stdin.write(`
+    sub.stdin.write(`
       pwd \n
       git init \n
+      echo "-----添加 remote address => known_hosts-----"
+      ssh-keyscan -t rsa -H github.com 2>&1 | sort -u - ~/.ssh/known_hosts > ~/.ssh/temp \n
+      mv ~/.ssh/temp ~/.ssh/kowns_list \n
+      echo "----------"
+
       git config user.name "superq"
       git config user.email "qq1143094348@gmail.com"
       git remote add origin ${gitAddr} \n
@@ -44,7 +50,7 @@ const pushToPage = async () => {
       git status \n
       git push origin HEAD:gh-pages -f \n
     `)
-   // await  sub.stdin.end()
+  sub.stdin.end()
 
   }catch(err) {
     console.log("err: ", err)
@@ -57,11 +63,11 @@ const pushToPage = async () => {
    
   })
 
-  sub.on('exit', (...rest)=> {
-    try{sub.stdin.write('yes\n')}
-    catch(err) {
-      console.log("exit err: ", err, rest)
-    }
+  sub.on('exit', (data)=> {
+   
+    console.log("exit: ", ...data)
+    console.log('push complete!')
+
   })
 
   
@@ -75,4 +81,6 @@ const pushToPage = async () => {
 
 
 pushToPage()
+
+
 
