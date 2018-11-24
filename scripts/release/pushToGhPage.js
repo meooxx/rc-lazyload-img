@@ -65,12 +65,6 @@ const pushToPage = async () => {
    
   })
 
-  sub.on('exit', (data)=> {
-   
-    console.log("exit: ", ...data)
-    console.log('push complete!')
-
-  })
 
   
   sub.stderr.on('data', data=>{
