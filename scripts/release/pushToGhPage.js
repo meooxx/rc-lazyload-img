@@ -37,8 +37,9 @@ const pushToPage = async () => {
     sub.stdin.write(`
       pwd \n
       git init \n
+      mkdir ~/.ssh  2>&1 \n
       echo "-----添加 remote address => known_hosts-----"
-      ssh-keyscan -t rsa -H github.com 2>&1 | sort -u - ~/.ssh/known_hosts > ~/.ssh/temp \n
+      ssh-keyscan -t rsa -H github.com 2>&1 | sort -u - ~/.ssh/knowns_hosts > ~/.ssh/temp \n
       mv ~/.ssh/temp ~/.ssh/kowns_list \n
       echo "----------"
 
