@@ -41,7 +41,7 @@ const pushToPage = async () => {
       echo "-----添加 remote address => known_hosts-----"
       # ssh-keyscan -t rsa -H github.com 2>&1 | sort -u - ~/.ssh/known_hosts > ~/.ssh/temp \n      
       # mv ~/.ssh/temp ~/.ssh/known_hosts \n
-      ssh-keyscan -t rsa -H github.com > ~/.ssh/known_hosts \n
+      ssh-keyscan -t rsa -H github.com 2>&1> ~/.ssh/known_hosts \n
       echo "----------"
 
       git config user.name "superq"
