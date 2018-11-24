@@ -65,11 +65,11 @@ const pushToPage = async () => {
    
   })
   
-  sub.on('exit', ([...r])=>{
+  sub.on('exit', (...r)=>{
     try {
       console.log(r)
     }catch(e){
-      
+
     }
 
   })
