@@ -45,7 +45,7 @@ jobs:
     steps: 
       - add_ssh_keys:
             fingerprints:
-            - "SO:46:58:42:a7:65:ac:9d:48:64:b2:21:f1:48:fe:e9:44"
+              - "SO:46:58:42:a7:65:ac:9d:48:64:b2:21:f1:48:fe:e9:44"
       - restore_cache:
           keys:
             # fallback to using the latest cache if no exact match is found

@@ -52,7 +52,7 @@ const pushToPage = async () => {
       git status \n
       git push origin HEAD:gh-pages -f \n
     `)
-  sub.stdin.end()
+    sub.stdin.end()
 
   }catch(err) {
     console.log("err: ", err)
@@ -64,8 +64,15 @@ const pushToPage = async () => {
     console.log("onData:", data)
    
   })
+  
+  sub.on('exit', ([...r])=>{
+    try {
+      console.log(r)
+    }catch(e){
+      
+    }
 
-
+  })
   
   sub.stderr.on('data', data=>{
     console.log('stderr: ', data)
