@@ -38,14 +38,14 @@ const pushToPage = async () => {
       pwd && ls\n
       git init \n
       mkdir ~/.ssh  2>&1 \n
-      echo "-----添加 remote address => known_hosts-----"
+      echo "-----添加 remote address => known_hosts-----"\n
       # ssh-keyscan -t rsa -H github.com 2>&1 | sort -u - ~/.ssh/known_hosts > ~/.ssh/temp \n      
       # mv ~/.ssh/temp ~/.ssh/known_hosts \n
       ssh-keyscan -t rsa -H github.com 2>&1> ~/.ssh/known_hosts \n
-      echo "----------"
+      echo "----------" \n
 
-      git config user.name "superq"
-      git config user.email "qq1143094348@gmail.com"
+      git config user.name "superq"\n
+      git config user.email "qq1143094348@gmail.com"\n
       git remote add origin ${gitAddr} \n
       git add . \n
       git commit -m "gh-pages" \n
@@ -75,7 +75,7 @@ const pushToPage = async () => {
   
   sub.stderr.on('data', data=>{
     console.log('stderr: ', data)
-    process.exit(1)
+    //process.exit(1)
 
   })
 
