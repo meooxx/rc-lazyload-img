@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import  LoadImg  from 'rc-lazyload-img'
-
-
-console.log(LoadImg)
+import holderImg from './pic1.jpeg'
 
 class App extends Component {
   render() {
@@ -15,19 +13,26 @@ class App extends Component {
         <ul>
           {<>
             <li>     
-              <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic1.jpeg'/>
+              <LoadImg 
+                src='//meooxx.github.io/rc-lazyload-img/pic1.jpeg'/>
             </li>
             <li>     
-              <LoadImg src='//meooxx.github.io/rc-lazyload-img/js.jpeg'/>
+              <LoadImg 
+                style={{width: '500px'}}
+                src='//meooxx.github.io/rc-lazyload-img/js.jpeg'/>
             </li>
             <li>     
-              <LoadImg src='//meooxx.github.io/rc-lazyload-img/logo.svg'/>
+              <LoadImg 
+                dataBGImg={'//meooxx.github.io/rc-lazyload-img/logo.svg'}
+              />
             </li>
             <li>     
               <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic2.jpeg'/>
             </li>
             <li>     
-              <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic3.jpeg'/>
+              <LoadImg 
+                holder={holderImg}
+                src='//meooxx.github.io/rc-lazyload-img/pic3.jpeg'/>
             </li>
           </>}
         </ul>

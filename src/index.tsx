@@ -7,13 +7,15 @@ interface RefFunc {
 }
 interface CustomProps {
   dataBGImg?: string;
+  holder?: string
   //ref: React.ComponentClass;
 }
 
 type FwdRProps = CustomProps & React.ImgHTMLAttributes<HTMLImageElement>;
+const BGHOLDER = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
 const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
-  const { src, alt = "", dataBGImg = "", ...rest } = props;
+  const { src, alt = "", dataBGImg = "", holder = BGHOLDER  , ...rest } = props;
 
   const img = (
     <img
@@ -21,13 +23,12 @@ const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
       data-src={src}
       {...rest}
       ref={ref}
-      src={
-        "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-      }
+      src={holder} // 占位图片
     />
   ) as React.ReactHTMLElement<HTMLImageElement>;
 
   if (dataBGImg) {
+    // todo: background-img placeholder img
     const pps = {
       //style: {...props.style},
       ref,
