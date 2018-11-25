@@ -12,10 +12,14 @@ class App extends Component {
     return (
       <div className="App">
         <ul>
-          {
-            
-          }
-          
+          {<>
+            <li>     
+              <LoadImg src='./js.jpeg'/>
+            </li>
+            <li>     
+              <LoadImg src='./pic1.jpeg'/>
+            </li>
+          </>}
         </ul>
 
       </div>
