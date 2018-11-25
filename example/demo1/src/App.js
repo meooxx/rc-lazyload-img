@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 import  LoadImg  from 'rc-lazyload-img'
 
+
 console.log(LoadImg)
 
 class App extends Component {
@@ -14,10 +15,19 @@ class App extends Component {
         <ul>
           {<>
             <li>     
-              <LoadImg src='./js.jpeg'/>
+              <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic1.jpeg'/>
             </li>
             <li>     
-              <LoadImg src='./pic1.jpeg'/>
+              <LoadImg src='//meooxx.github.io/rc-lazyload-img/js.jpeg'/>
+            </li>
+            <li>     
+              <LoadImg src='//meooxx.github.io/rc-lazyload-img/logo.svg'/>
+            </li>
+            <li>     
+              <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic2.jpeg'/>
+            </li>
+            <li>     
+              <LoadImg src='//meooxx.github.io/rc-lazyload-img/pic3.jpeg'/>
             </li>
           </>}
         </ul>
