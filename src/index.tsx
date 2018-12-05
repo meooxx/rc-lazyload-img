@@ -14,7 +14,13 @@ interface CustomProps {
 type FwdRProps = CustomProps & React.ImgHTMLAttributes<HTMLImageElement>;
 const BGHOLDER = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
-const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
+function forwardRef(props: FwdRProps, ref: (node: HTMLImageElement) => void):
+    React.ReactHTMLElement<HTMLImageElement> | React.ReactHTMLElement<HTMLElement>;
+function forwardRef(props: FwdRProps, ref: React.Ref<HTMLImageElement>): 
+    React.ReactHTMLElement<HTMLImageElement> | React.ReactHTMLElement<HTMLElement>;
+
+
+function forwardRef(props: FwdRProps, ref: React.Ref<HTMLImageElement>) {
   const { src, alt = "", dataBGImg = "", holder = BGHOLDER  , ...rest } = props;
 
   const img = (
@@ -35,15 +41,12 @@ const forwardRef = (props: FwdRProps, ref: React.Ref<HTMLImageElement>) => {
       "data-bgimg": dataBGImg
     };
 
-    const ele = <div {...rest} {...pps} /> as React.ReactHTMLElement<
-      HTMLElement
-    >;
+    const ele = <div {...rest} {...pps} /> as React.ReactHTMLElement<HTMLElement>;
     return ele;
   }
   return img;
 };
 
-const Wrapper = React.forwardRef<HTMLImageElement, FwdRProps>(forwardRef);
 
 interface IntersectionObserverOption {
   root?: Element;
@@ -145,6 +148,14 @@ export default class LazyLoadImg extends React.Component<Props> {
   };
 
   render() {
-    return <Wrapper {...this.props} ref={this.saveNode} />;
+    
+    let Wrapper
+    if(!!React.forwardRef)  {
+      Wrapper = React.forwardRef<HTMLImageElement, FwdRProps>(forwardRef);
+      return <Wrapper {...this.props} ref={this.saveNode}/>
+    }else {
+      Wrapper = forwardRef(this.props, this.saveNode)  //as React.ComponentType<Props>
+      return Wrapper; 
+    }
   }
 }
