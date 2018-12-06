@@ -6,7 +6,7 @@ const convert2cjs = require("rollup-plugin-commonjs");
 const replace = require('rollup-plugin-replace')
 const path = require('path')
 const { asyncRimraf } = require('../utils')
-const {generatePublishDir} = require("../generatePublishDir")
+const { generatePublishDir } = require("../generatePublishDir")
  
 // const DEV = 'development'
 const PRO = "production"
@@ -22,7 +22,8 @@ const plugins = [
   convert2cjs({
     include: "node_modules/**",
     namedExports: {
-      "node_modules/react/index.js": ["createElement", "Component", "forwardRef"]
+      "node_modules/react/index.js": ["createElement", "Component", "forwardRef"],
+      "node_modules/react/react.js": ["createElement", "Component"]
     }
   }),
   ts()
