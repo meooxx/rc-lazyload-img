@@ -18,13 +18,14 @@ npm i rc-lazyload-img
 
 ```
 
-usage 
-| props    |      type     |  default                         | des
-|----------|:-------------:|---------------------------------:|------: |
-| src      |    string     |   1*1 image(base64)              | as small as possible
-| dataBGImg|    string     |  '' |                            |
-| holder   |    string     |   1*1 image(base64) img element  | placeholder of imgElement(as small as possible)
-|...ImgHTMLAttributes|      |                                 |any(same as <img {...ImgHTMLAttributes}/>)|
+usage    
+
+| props    |      type     |  default                         | des|
+|----------|-------------:|---------------------------------:|------: |
+| src      |    string     |   1*1 image(base64)              | as small as possible|
+| dataBGImg|    string     |  ' ' |                            | |
+| holder   |    string     |   1*1 image(base64) img element  | image placeholder of imgElement(as small as possible)|
+|...ImgHTMLAttributes|   any   |                              |any other &lt;img / &gt;'s propterty   |
 
 
 
