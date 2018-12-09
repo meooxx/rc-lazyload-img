@@ -34,12 +34,13 @@ jobs:
           # run tests!
       - run: yarn build
       - run: ls .
-      - persist_to_workspace:
+      - persist_to_workspace: # 保存这些给其他 jobs 使用(by attach )
           root: ~/project
           paths: 
             - dist
             - scripts
             - example
+            - package.json
   build_demo:
     <<: *defaults
     steps: 
