@@ -114,6 +114,6 @@
     ]
   },
   "devDependencies": {
-    "rc-lazyload-img": "^1.0.1"
+    "rc-lazyload-img": "^1.3.0"
   }
 }

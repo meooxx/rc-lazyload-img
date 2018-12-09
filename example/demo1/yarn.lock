@@ -6651,12 +6651,11 @@ raw-body@2.3.3:
     iconv-lite "0.4.23"
     unpipe "1.0.0"
 
-rc-lazyload-img@^1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/rc-lazyload-img/download/rc-lazyload-img-1.0.1.tgz#86156eac80c5cbdfe30127ebf23310fbd74900e9"
+rc-lazyload-img@^1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.taobao.org/rc-lazyload-img/download/rc-lazyload-img-1.3.0.tgz#6c2aa7f89db77ab1be9aeeb089134148008dd427"
   dependencies:
     intersection-observer "^0.5.1"
-    react "^16.6.0"
 
 rc@^1.2.7:
   version "1.2.8"
