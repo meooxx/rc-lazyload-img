@@ -15,7 +15,7 @@ install
 ```sh
 npm i rc-lazyload-img
 # or yarn add -D rc-lazyload-img
-
+# react 15/16 required
 ```
 
 usage    
