@@ -75,6 +75,9 @@ jobs:
     steps: 
       - attach_workspace:
           at: ~/project
+      - restore_cache:
+          keys:
+            - v1-dependencies-
       - run:
           name: "Authenticate with registry" 
           command: |
