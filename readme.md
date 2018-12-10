@@ -7,6 +7,7 @@ feature
  * jsx 
  * outbox
  * client & server 
+ * background-img
 
 pr welcome !!
 
@@ -21,16 +22,18 @@ npm i rc-lazyload-img
 usage    
 
 | props    |      type     |  default                         | des|
-|----------|-------------:|---------------------------------:|------: |
+|----------|-------------:|----------------------------------:|------: |
 | src      |    string     |   1*1 image(base64)              | as small as possible|
-| dataBGImg|    string     |  ' ' |                            | |
-| holder   |    string     |   1*1 image(base64) img element  | image placeholder of imgElement(as small as possible)|
+| dataBGImg|    string     |  ' '                             | style.background-img = dataBGImg  |
+| holder   |    string     |   1*1 image(base64) img element  | placeholder of img(as small as possible)|
 |...ImgHTMLAttributes|   any   |                              |any other &lt;img / &gt;'s propterty   |
 
 
 
 ```js
    ...
+  import LoadImg from 'rc-lazyload-img' 
+  ...
   <LoadImg src='www.example.com/pic1.png' />
   <LoadImg dataBGImg="www.example.com/pic2.png" />
   <LoadImg 
