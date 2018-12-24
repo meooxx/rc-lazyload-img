@@ -1,6 +1,6 @@
-react lazy load(preview!!)
+# react lazy load(preview!!)
 
-feature
+# feature
 
  * it leverages intersetion-observer Api  [w3c](https://github.com/w3c/IntersectionObserver)
  * ligthweigth and flexible script 
@@ -8,10 +8,11 @@ feature
  * outbox
  * client & server 
  * background-img
+ 
 
 pr welcome !!
 
-install 
+# install 
 
 ```sh
 npm i rc-lazyload-img
@@ -19,7 +20,7 @@ npm i rc-lazyload-img
 # react 15/16 required
 ```
 
-usage    
+# usage    
 
 | props    |      type     |  default                         | des|
 |----------|-------------:|----------------------------------:|------: |
@@ -29,7 +30,7 @@ usage
 |...ImgHTMLAttributes|   any   |                              |any other &lt;img / &gt;'s propterty   |
 
 
-
+[demo online](https://meooxx.github.io/rc-lazyload-img/)
 ```js
    ...
   import LoadImg from 'rc-lazyload-img' 
