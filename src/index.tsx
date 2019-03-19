@@ -1,5 +1,4 @@
 import * as React from "react";
-
 const observerMap = new Map();
 interface RefFunc {
   (instance: HTMLImageElement): any;
@@ -12,6 +11,7 @@ interface CustomProps {
 
 type FwdRProps = CustomProps & React.ImgHTMLAttributes<HTMLImageElement>;
 const BGHOLDER = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+let GLOBAL_HOLDER = BGHOLDER
 
 type refFun = (node: HTMLImageElement) => void
 type reactRef = React.Ref<HTMLImageElement>
@@ -22,7 +22,7 @@ function forwardRef(props: FwdRProps, ref: reactRef):
     React.ReactHTMLElement<HTMLImageElement> | React.ReactHTMLElement<HTMLElement>;
 
 function forwardRef(props: any, ref: any) {
-  const { src, alt = "", dataBGImg = "", holder = BGHOLDER  , ...rest } = props;
+  const { src, alt = "", dataBGImg = "", holder = GLOBAL_HOLDER  , ...rest } = props;
 
   const img = (
     <img
@@ -35,7 +35,6 @@ function forwardRef(props: any, ref: any) {
   ) as React.ReactHTMLElement<HTMLImageElement>;
 
   if (dataBGImg) {
-    // todo: background-img placeholder img
     const pps = {
       //style: {...props.style},
       ref,
@@ -65,7 +64,11 @@ export interface Props {
 
 export default class LazyLoadImg extends React.Component<Props> {
   comRef: HTMLImageElement;
-
+  // you can define the global holder img
+  // inspired by spin element of antd 
+  static setGlobalHolder(picUrl:string) {
+    GLOBAL_HOLDER = picUrl 
+  }
   componentDidMount() {
     const INTERSECTIONRATIO: string = "intersectionRatio";
     const INTERSECTION_OBSERVER = "IntersectionObserver";
